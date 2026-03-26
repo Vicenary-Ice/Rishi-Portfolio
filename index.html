@@ -221,61 +221,63 @@
       to { opacity: 1; }
     }
 
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .hero-heading {
+    .hero-name {
       font-family: var(--serif);
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-size: clamp(4rem, 10vw, 10rem);
       font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      max-width: 900px;
-      margin-bottom: 36px;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
     }
 
-    .hero-heading em {
-      font-style: italic;
-      color: var(--muted);
-    }
+    .hero-name .first { display: block; }
+    .hero-name .last  { display: block; font-style: italic; color: var(--muted); }
 
     .hero-sub {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      max-width: 420px;
-      line-height: 1.8;
+      max-width: 400px;
+      line-height: 1.9;
+      border-left: 1px solid var(--border);
+      padding-left: 20px;
     }
 
-    .scroll-indicator {
+    /* ── Marquee ticker ───────────────────────────────────── */
+    .hero-ticker {
       position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      padding: 14px 0;
+      background: var(--bg);
+    }
+
+    .ticker-track {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track span {
       font-size: 0.65rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      animation: float 2.5s ease-in-out infinite;
+      color: var(--muted);
+      padding: 0 28px;
     }
 
-    .scroll-indicator .arrow {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, transparent, var(--muted));
+    .ticker-track span.dot {
+      color: var(--border);
+      padding: 0;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(8px); }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
     /* ─────────────────────────────────────────────────────────
@@ -623,123 +625,46 @@
     /* ─────────────────────────────────────────────────────────
        Contact
     ───────────────────────────────────────────────────────── */
-    #contact .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
+    .contact-simple {
+      max-width: 640px;
     }
 
-    .contact-form-wrap h3 {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 300;
-      margin-bottom: 36px;
-    }
-
-    .form-field {
-      margin-bottom: 32px;
-    }
-
-    .form-field label {
-      display: block;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .form-field input,
-    .form-field textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      padding: 10px 0;
-      font-family: var(--mono);
+    .contact-tagline {
       font-size: 0.88rem;
-      font-weight: 300;
-      color: var(--text);
-      outline: none;
-      resize: none;
-      transition: border-color var(--transition);
-    }
-
-    .form-field input:focus,
-    .form-field textarea:focus {
-      border-bottom-color: var(--text);
-    }
-
-    .form-field textarea { min-height: 110px; }
-
-    .btn-submit {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 14px 40px;
-      border: 1px solid var(--text);
-      background: var(--text);
-      color: var(--bg);
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-    }
-
-    .btn-submit:hover {
-      background: transparent;
-      color: var(--text);
-    }
-
-    /* Contact info panel */
-    .contact-info {
-      padding-top: 80px;
-    }
-
-    .contact-info p {
-      font-size: 0.78rem;
       color: var(--muted);
       line-height: 1.9;
-      max-width: 320px;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
 
     .contact-links {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 0;
+      border-top: 1px solid var(--border);
     }
 
     .contact-link {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text);
       display: flex;
       align-items: center;
-      gap: 14px;
-      transition: opacity var(--transition);
-      position: relative;
+      gap: 32px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left var(--transition), opacity var(--transition);
     }
 
-    .contact-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--text);
-      transition: width var(--transition);
+    .contact-link:hover {
+      padding-left: 8px;
+      opacity: 0.7;
     }
-
-    .contact-link:hover { opacity: 0.7; }
-    .contact-link:hover::after { width: 100%; }
 
     .contact-link-label {
       font-size: 0.64rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-      width: 60px;
+      width: 70px;
       flex-shrink: 0;
     }
 
@@ -821,11 +746,7 @@
         align-items: flex-start;
       }
 
-      #contact .contact-inner {
-        grid-template-columns: 1fr;
-        gap: 52px;
-      }
-      .contact-info { padding-top: 0; }
+      .contact-simple { max-width: 100%; }
 
       footer { padding: 28px 24px; }
     }
@@ -835,7 +756,7 @@
       .skill-category { border-right: none; border-bottom: 1px solid var(--border); }
       .skill-category:last-child { border-bottom: none; }
 
-      .hero-heading { font-size: 3rem; }
+      .hero-name { font-size: 3.2rem; }
     }
   </style>
 </head>
@@ -869,21 +790,46 @@
   </div>
 
   <!-- ─────────────────────── HERO ─────────────────────── -->
-  <section id="hero" style="position:relative; border-top:none;">
-    <div class="hero-eyebrow">Rishi Ramnathsing &mdash; New York, NY</div>
-    <h1 class="hero-heading">
-      Building things<br />
-      that <em>matter.</em>
+  <section id="hero" style="position:relative; border-top:none; padding-bottom: 60px;">
+    <h1 class="hero-name">
+      <span class="first">Rishi</span>
+      <span class="last">Ramnathsing</span>
     </h1>
     <p class="hero-sub">
-      Developer, entrepreneur, and student at NYU Tandon &mdash;
-      turning ideas into products at the intersection of
-      technology and business.
+      Developer &amp; entrepreneur at NYU Tandon &mdash;
+      building at the intersection of technology,
+      business, and bold ideas.
     </p>
 
-    <div class="scroll-indicator">
-      <div class="arrow"></div>
-      <span>Scroll</span>
+    <!-- Ticker strip — transitions visually into the About section -->
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <span>Developer</span><span class="dot">·</span>
+        <span>Entrepreneur</span><span class="dot">·</span>
+        <span>NYU Tandon</span><span class="dot">·</span>
+        <span>Computer Vision</span><span class="dot">·</span>
+        <span>New York</span><span class="dot">·</span>
+        <span>AI / ML</span><span class="dot">·</span>
+        <span>National Athlete</span><span class="dot">·</span>
+        <span>Next.js</span><span class="dot">·</span>
+        <span>Startup Builder</span><span class="dot">·</span>
+        <span>MMA</span><span class="dot">·</span>
+        <span>React</span><span class="dot">·</span>
+        <span>Scuba Diver</span><span class="dot">·</span>
+        <!-- duplicate for seamless loop -->
+        <span>Developer</span><span class="dot">·</span>
+        <span>Entrepreneur</span><span class="dot">·</span>
+        <span>NYU Tandon</span><span class="dot">·</span>
+        <span>Computer Vision</span><span class="dot">·</span>
+        <span>New York</span><span class="dot">·</span>
+        <span>AI / ML</span><span class="dot">·</span>
+        <span>National Athlete</span><span class="dot">·</span>
+        <span>Next.js</span><span class="dot">·</span>
+        <span>Startup Builder</span><span class="dot">·</span>
+        <span>MMA</span><span class="dot">·</span>
+        <span>React</span><span class="dot">·</span>
+        <span>Scuba Diver</span><span class="dot">·</span>
+      </div>
     </div>
   </section>
 
@@ -905,22 +851,24 @@
         <div class="about-text">
           <p class="fade-in delay-1">
             I'm a student at NYU Tandon studying Business and Technology Management,
-            where I spend my time exploring the space where great software meets real
-            business impact. I believe the most interesting problems live at that
-            intersection &mdash; and I'm building the skills to solve them.
+            focused on the space where software meets real business impact. My sharpest
+            work happens when I'm building &mdash; turning a problem into something
+            people actually use.
           </p>
           <p class="fade-in delay-2">
-            Outside the classroom, I've launched a barbering business from the ground up,
-            grown it to 20+ monthly clients, and built all the digital infrastructure
-            behind it &mdash; booking, payments, social media. I'm an active member of
-            the Entrepreneurial Exchange Group at Stern and the Tandon Consulting Club,
-            where I get to work on real startup problems with driven people.
+            Most of my energy right now goes into the
+            <strong>Entrepreneurial Exchange Group at Stern</strong>, where I'm part of
+            an 8-week accelerator taking a startup from ideation to revenue. It's the
+            kind of environment I thrive in: fast, high-stakes, and outcome-driven.
+            On the side, I've shipped a computer vision-powered shadow boxing coach
+            and built a full barbering business &mdash; website, booking system,
+            payments, and a 2k+ social following &mdash; entirely from scratch.
           </p>
           <p class="fade-in delay-3">
-            My curiosity pulls me toward AI and computer vision, competitive squash
-            (I've coached juniors all the way to national championships), and anything
-            that blends creativity with craft. I like to build things that work in the
-            real world &mdash; and I'm always looking for the next interesting problem.
+            Before NYU, I competed as a member of the
+            <strong>Dutch National Squash Team</strong> &mdash; an experience that
+            shaped how I approach everything: with discipline, adaptability, and
+            a bias toward action. I'm always looking for the next hard problem.
           </p>
 
           <div class="interests fade-in delay-4">
@@ -987,7 +935,7 @@
             <li>VS Code / Cursor IDE</li>
             <li>Vercel</li>
             <li>Canva</li>
-            <li>Notion</li>
+            <li>Figma</li>
             <li>Excel</li>
           </ul>
         </div>
@@ -1115,9 +1063,9 @@
             <h3 class="timeline-title">Business &amp; Technology Management</h3>
             <p class="timeline-company">NYU Tandon School of Engineering</p>
             <p class="timeline-desc">
-              Studying at the intersection of business and technology. Active member
-              of the Entrepreneurial Exchange Group at Stern, Tandon Consulting Club,
-              and Business &amp; Finance Group. GPA: 3.5 / 4.0.
+              Studying at the intersection of business and technology. Member of the
+              Entrepreneurial Exchange Group at Stern and the Business &amp; Finance Group.
+              GPA: 3.5 / 4.0.
             </p>
           </div>
         </div>
@@ -1126,11 +1074,11 @@
           <div class="timeline-period">Dec 2025 &ndash; Present</div>
           <div class="timeline-content">
             <h3 class="timeline-title">Startup Team Member</h3>
-            <p class="timeline-company">Entrepreneurial Exchange Group (Stern)</p>
+            <p class="timeline-company">Entrepreneurial Exchange Group — NYU Stern</p>
             <p class="timeline-desc">
-              Developed and launched a startup from ideation to revenue generation
-              within an 8-week accelerator program. Applied lean startup methodology
-              and data-driven insights to track performance and determine pivoting strategy.
+              Developed and launched a startup from ideation to revenue within an
+              8-week accelerator. Applied lean startup methodology and data-driven
+              insights to track performance and determine pivoting strategy.
             </p>
           </div>
         </div>
@@ -1148,15 +1096,42 @@
           </div>
         </div>
 
+        <div class="timeline-item fade-in delay-2">
+          <div class="timeline-period">2023 &ndash; 2024</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Delegate &amp; Committee Chair</h3>
+            <p class="timeline-company">Model United Nations</p>
+            <p class="timeline-desc">
+              Represented assigned nations in international simulations, drafting
+              resolutions and building consensus across delegations. Served as
+              committee chair, facilitating debate and procedure for 40+ delegates
+              on global policy topics.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in delay-3">
+          <div class="timeline-period">2019 &ndash; 2025</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">National Squash Team Player</h3>
+            <p class="timeline-company">Dutch National Squash Team</p>
+            <p class="timeline-desc">
+              Competed as a member of the Dutch National Squash Team, representing
+              the Netherlands in international tournaments. Combined elite sport with
+              academics, developing discipline, resilience, and a high-performance mindset.
+            </p>
+          </div>
+        </div>
+
         <div class="timeline-item fade-in delay-3">
           <div class="timeline-period">May 2022 &ndash; Feb 2025</div>
           <div class="timeline-content">
             <h3 class="timeline-title">Squash Coach</h3>
             <p class="timeline-company">Houtrust Squash</p>
             <p class="timeline-desc">
-              Coached 20+ players across beginner to intermediate levels with
-              individualized training programs. Mentored 5 junior competitive players
-              for tournaments &mdash; all advancing to national championships.
+              Coached 20+ players across all levels with individualized training programs.
+              Mentored 5 junior competitive players, all of whom advanced to national
+              championships.
             </p>
           </div>
         </div>
@@ -1173,47 +1148,25 @@
         <h2 class="section-title">Contact</h2>
       </div>
 
-      <div class="contact-inner">
-        <div class="contact-form-wrap fade-in delay-1">
-          <h3>Let&rsquo;s talk.</h3>
-          <form id="contact-form" onsubmit="handleSubmit(event)">
-            <div class="form-field">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required />
-            </div>
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required />
-            </div>
-            <div class="form-field">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Send message</button>
-          </form>
-        </div>
-
-        <div class="contact-info fade-in delay-2">
-          <p>
-            I&rsquo;m always open to new conversations &mdash; whether it&rsquo;s a
-            project, an opportunity, or just a chat about tech and entrepreneurship.
-            My inbox is open.
-          </p>
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:rar9995@nyu.edu">
-              <span class="contact-link-label">Email</span>
-              rar9995@nyu.edu
-            </a>
-            <!-- Update these hrefs when you have your handles ready -->
-            <a class="contact-link" href="#" target="_blank" rel="noopener">
-              <span class="contact-link-label">GitHub</span>
-              /rishi-ramnathsing
-            </a>
-            <a class="contact-link" href="#" target="_blank" rel="noopener">
-              <span class="contact-link-label">LinkedIn</span>
-              /in/rishi-ramnathsing
-            </a>
-          </div>
+      <div class="contact-simple fade-in delay-1">
+        <p class="contact-tagline">
+          Open to conversations about technology, entrepreneurship,
+          and anything in between. Reach out.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:rar9995@nyu.edu">
+            <span class="contact-link-label">Email</span>
+            rar9995@nyu.edu
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/rishi-ramnathsing-95846b373" target="_blank" rel="noopener">
+            <span class="contact-link-label">LinkedIn</span>
+            /in/rishi-ramnathsing-95846b373
+          </a>
+          <!-- Update href when you have your GitHub username -->
+          <a class="contact-link" href="https://github.com/Vicenary-Ice" target="_blank" rel="noopener">
+            <span class="contact-link-label">GitHub</span>
+            /Vicenary-Ice
+          </a>
         </div>
       </div>
     </div>
@@ -1271,16 +1224,6 @@
     );
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // ── Contact form submission ─────────────────────────────
-    function handleSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      // In production, replace this with a real form handler
-      // (e.g. Formspree, EmailJS, or a serverless function)
-      alert(`Thanks, ${name}! Your message has been received. I'll get back to you soon.`);
-      e.target.reset();
-    }
 
     // ── Active nav highlight on scroll ─────────────────────
     const sections = document.querySelectorAll('section[id]');
